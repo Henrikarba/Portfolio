@@ -36,4 +36,5 @@ Thumbs.db
 .mise.toml
 
 # Production build
-www/
+
+dist
