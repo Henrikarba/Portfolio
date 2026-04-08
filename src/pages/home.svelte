@@ -71,7 +71,7 @@
       />
     </div>
 
-    <div class="z-20 flex flex-col justify-end mb-20 ml-5 md:ml-0 p-0">
+    <div class="z-20 flex flex-col justify-end mb-20">
       <div class={fallbackLevel >= 2 ? "" : "text-white"}>
         <h2 class="text-4xl md:text-7xl">
           Henri<br />Karba
