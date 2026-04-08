@@ -1,6 +1,13 @@
 // Project Images
+import QualityDocumentAppImage from "../../static/Projects/QualityDocumentApp.svg";
 import PortfolioImage from "../../static/Projects/Portfolio.webp";
 import OvilonImage from "../../static/Projects/Ovilon.webp";
+
+// Texts
+import QualityDocumentAppText from "./texts/projects/quality-document-app.md?raw";
+import OvilonWebsiteText from "./texts/projects/ovilon-website.md?raw";
+import PortfolioWebsiteText from "./texts/projects/portfolio-website.md?raw";
+import LapikudWebsiteText from "./texts/projects/lapikud-website.md?raw";
 
 /*
 TEMPLATE Project
@@ -11,10 +18,7 @@ TEMPLATE Project
         text: "",
         links: {
             github: "",
-            demo: "",
             website: "",
-            documentation: "",
-            blogPost: ""
         },
         technologies: ["Svelte", "Framework7", "JavaScript", "Tailwind CSS"],
         media:
@@ -28,9 +32,22 @@ TEMPLATE Project
 
 export const projectsData = [
     {
+        id: "quality-document-app",
+        title: "Quality Documentation App",
+        text: QualityDocumentAppText.trim(),
+        links: {},
+        technologies: ["React Native", "Web Admin", "JavaScript", "PDF Generation", "Golang"],
+        media:
+        {
+            type: "image",
+            src: QualityDocumentAppImage,
+            alt: "Quality documentation app placeholder preview",
+        }
+    },
+    {
         id: "ovilon-website",
         title: "Ovilon Website",
-        text: "...",
+        text: OvilonWebsiteText.trim(),
         links: {
             website: "https://ovilon.ee/"
         },
@@ -45,7 +62,7 @@ export const projectsData = [
     {
         id: "portfolio-website",
         title: "Personal Portfolio Website",
-        text: "This portfolio website showcases my development skills and professional journey. Built with Framework7 and Svelte, it features responsive design, dark/light mode support based on system settings, and interactive elements like the timeline navigation on the Activity page. The site is optimized for both mobile and desktop viewing experiences.",
+        text: PortfolioWebsiteText.trim(),
         links: {
             github: "https://github.com/Henrikarba/portfolio"
         },
@@ -56,5 +73,21 @@ export const projectsData = [
             src: PortfolioImage,
             alt: "Portfolio website screenshot"
         }
-    }
+    }/*,
+    {
+        id: "Lapikud-website",
+        title: "LAPikud Website",
+        text: LapikudWebsiteText.trim(),
+        links: {
+            github: "https://github.com/Lapikud/lapikud.github.io",
+            website: "https://www.lapikud.ee/",
+        },
+        technologies: ["Svelte", "JavaScript", "Tailwind CSS"],
+        media:
+            {
+                type: "image",
+                src: placeholderImage,
+                alt: "image"
+            }
+    }*/
 ];

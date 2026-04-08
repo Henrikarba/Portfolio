@@ -1,4 +1,11 @@
 
+// QEst Hack
+import QestHackImage1 from "../../static/QestHack/winners.webp";
+import QestHackImage2 from "../../static/QestHack/event.webp";
+import QestHackImage3 from "../../static/QestHack/participants.webp";
+import QestHackImage4 from "../../static/QestHack/solution.webp";
+
+
 // Kood/Jõhvi
 import CertCompletion from "../../static/KoodJohvi/Certificates/Certificate of Completion Henri Karba.pdf";
 import GoLangCert from "../../static/KoodJohvi/Certificates/Go Language Certificate.pdf";
@@ -26,13 +33,49 @@ import CyberImage1 from "../../static/CyberBattle/CyberBattle.webp";
 import CyberImage2 from "../../static/CyberBattle/CyberMe.webp";
 import CyberImage3 from "../../static/CyberBattle/CyberEvent.webp";
 
+// Texts
+import KoodJohviText from "./texts/activity/koodjohvi.md?raw";
+import HackZurichText from "./texts/activity/hackzurich.md?raw";
+import HackCodeXText from "./texts/activity/hackcodex.md?raw";
+import CyberBattleText from "./texts/activity/cyberbattle.md?raw";
+import QestHackText from "./texts/activity/qesthack.md?raw";
+
 export const activityData = [
+    {
+        id: "qesthack",
+        date: "2025-12-05",
+        title: "QestHack 2025 - First Place",
+        text: QestHackText.trim(),
+        link: "https://kvant.ee/qest-hack-2025/",
+        media: [
+            {
+                type: "image",
+                src: QestHackImage1,
+                alt: "QEst Hack 2025 winners"
+            },
+            {
+                type: "image",
+                src: QestHackImage2,
+                alt: "QEst Hack 2025 event"
+            },
+            {
+                type: "image",
+                src: QestHackImage3,
+                alt: "QEst Hack 2025 participants group photo"
+            },
+            {
+                type: "image",
+                src: QestHackImage4,
+                alt: "QEst Hack 2025 solution diagram"
+            }
+        ]
+    },
     {
         id: "koodjohvi",
         date: "2024-11-29",
         title: "Kood/Jõhvi 2022-2024",
-        text: "I am proud to have completed my studies at Kood/Jõhvi, a coding school that provided me with a deep understanding of software development and prepared me for real-world programming challenges. Throughout the program, I honed my skills in various programming languages, frameworks, and development tools. The hands-on experience and projects helped me solidify my knowledge and gave me the confidence to tackle complex technical problems.\n\nWhat made Kood/Jõhvi stand out was its focus on practical, project-based learning, allowing me to work on real-world applications and collaborate with peers on exciting, challenging tasks. This experience, combined with my passion for technology and problem solving, has shaped me into the developer I am today.",
-        link: "https://kood.tech/en/",
+        text: KoodJohviText.trim(),
+        link: "https://kood.tech/",
         media: [
             {
                 type: "image",
@@ -76,8 +119,8 @@ export const activityData = [
     {
         id: "hackzurich",
         date: "2023-09-15",
-        title: "HackZurich 2023 - Second Place Winner",
-        text: "At HackZurich 2023, I arrived without a team but quickly connected with others to form a spontaneous group. Without a clear project idea at the start, we brainstormed, collaborated, and worked tirelessly on our project over the course of the event. To our surprise, we secured second place, an unexpected but rewarding outcome that highlighted the power of teamwork and creative problem-solving under pressure. Our success was a testament to the synergy of different perspectives and the drive to push through challenges in real time.",
+        title: "HackZurich 2023 - Second Place",
+        text: HackZurichText.trim(),
         link: "https://hackzurich.com/highlights-2023",
         media: [
             {
@@ -105,7 +148,7 @@ export const activityData = [
         id: "hackcodex",
         date: "2023-09-15",
         title: "HackCodeX 2023 - Challenge Winner",
-        text: "At HackCodeX in Riga, my team and I chose to participate in Emergn's challenge, which was dedicated to improving the quality of life for people with disabilities. We were tasked with creating an app or solution that leveraged ChatGPT or other technologies to solve this issue. The event, a weekend-long experience, was exciting and chaotic at times, especially as we raced to get our introductory video ready before the deadline. Ultimately, our team won the challenge.",
+        text: HackCodeXText.trim(),
         media: [
             {
                 type: "image",
@@ -124,15 +167,15 @@ export const activityData = [
             },
             {
                 type: "video",
-                videoId: "yZAfwEvLYRw"
+                videoId: "17PfV7ajb3U"
             }
         ]
     },
     {
         id: "cyberbattle",
         date: "2021-05-10",
-        title: "Cyber Battle of Estonia 2021 – Finalist",
-        text: "In 2021, I had the opportunity to participate in the Cyber Battle of Estonia, a prestigious cybersecurity competition. I reached the finals and was placed in a team of 5, with team members randomly assigned based on individual skills to create a level playing field for all participants. Although my team didn't place, the experience was highly rewarding. I gained valuable insights into team-based problem solving in cybersecurity and sharpened my skills in high-pressure scenarios. It was a great opportunity to grow and network with other hobbyists in the field.",
+        title: "Cyber Battle of Estonia 2021 - Finalist",
+        text: CyberBattleText.trim(),
         link: "https://ctftech.com/cyber-battle-of-estonia-2021/",
         media: [
             {

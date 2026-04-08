@@ -1,0 +1,1 @@
+This portfolio website showcases my development skills and professional journey. Built with Framework7 and Svelte, it features responsive design, dark/light mode support based on system settings, and interactive elements like the timeline navigation on the Activity page. The site is optimized for both mobile and desktop viewing experiences.

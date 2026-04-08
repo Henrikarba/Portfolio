@@ -1,0 +1,3 @@
+I am proud to have completed my studies at Kood/Jõhvi, a coding school that provided me with a deep understanding of software development and prepared me for real-world programming challenges. Throughout the program, I honed my skills in various programming languages, frameworks, and development tools. The hands-on experience and projects helped me solidify my knowledge and gave me the confidence to tackle complex technical problems.
+
+What made Kood/Jõhvi stand out was its focus on practical, project-based learning, allowing me to work on real-world applications and collaborate with peers on exciting, challenging tasks. This experience, combined with my passion for technology and problem solving, has shaped me into the developer I am today.
