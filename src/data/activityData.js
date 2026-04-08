@@ -51,22 +51,22 @@ export const activityData = [
             {
                 type: "image",
                 src: QestHackImage1,
-                alt: "QEst Hack 2025 winners"
+                alt: "QEst Hack winners"
             },
             {
                 type: "image",
                 src: QestHackImage2,
-                alt: "QEst Hack 2025 event"
+                alt: "QEst Hack event"
             },
             {
                 type: "image",
                 src: QestHackImage3,
-                alt: "QEst Hack 2025 participants group photo"
+                alt: "QEst Hack participants group photo"
             },
             {
                 type: "image",
                 src: QestHackImage4,
-                alt: "QEst Hack 2025 solution diagram"
+                alt: "QEst Hack solution circuit diagram"
             }
         ]
     },
@@ -80,17 +80,17 @@ export const activityData = [
             {
                 type: "image",
                 src: KoodJohviImage1,
-                alt: ""
+                alt: "Kood Jõhvi graduate Henri Karba"
             },
             {
                 type: "image",
                 src: KoodJohviImage2,
-                alt: ""
+                alt: "Kood Jõhvi graduates group photo"
             },
             {
                 type: "image",
                 src: KoodJohviImage3,
-                alt: ""
+                alt: "Kood Jõhvi event"
             }
         ],
         certificates: [
