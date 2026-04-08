@@ -163,14 +163,12 @@
 
 <Page name="activity" class="text-left">
   <div class="relative">
-    <!-- Navbar -->
     <Block
       class="flex flex-col md:grid md:grid-cols-2 overflow-hidden mt-0 mb-24 navbar-placeholder"
     >
       <CustomNavbar pageName="Activity" />
     </Block>
 
-    <!-- Timeline Bar -->
     {#if !isMobile}
       <div
         class="sticky top-0 z-50 py-4 bg-white/80 backdrop-blur-sm dark:bg-black/80"
@@ -179,7 +177,6 @@
           <div class="relative">
             <Progress value={progress} />
 
-            <!-- Timeline dots -->
             <div class="absolute top-0 w-full flex justify-between -mt-1">
               {#each activityData as activity, index}
                 <div class="relative group">
@@ -198,7 +195,7 @@
                     onmouseleave={handleMouseLeave}
                   >
                   </button>
-                  <!-- Tooltip -->
+
                   <div
                     class="absolute tooltip top-7
                   {index === 0
@@ -229,7 +226,6 @@
       </div>
     {/if}
 
-    <!-- Content Sections -->
     <div class="mx-10 md:mx-24 mt-14 px-4 py-8 space-y-24">
       {#each activityData as activity}
         <div
@@ -281,7 +277,6 @@
 {/if}
 
 <style>
-  /* Smooth scroll behavior */
   :global(html) {
     scroll-behavior: smooth;
   }

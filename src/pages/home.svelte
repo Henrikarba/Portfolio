@@ -41,9 +41,7 @@
 <Page name="portfolio" class="text-left">
   <!-- Portfolio Intro -->
   <Block class="flex flex-col md:grid md:grid-cols-2 overflow-hidden my-0">
-    <!-- Navbar -->
     <CustomNavbar pageName="Portfolio" {fallbackLevel} />
-    <!-- Video Background -->
     {#if fallbackLevel === 0}
       <video
         src={bgVideoSrc}
@@ -62,10 +60,8 @@
       />
     {/if}
 
-    <!-- Dark Overlay only in dark mode -->
     <div class="absolute top-0 left-0 w-full h-full z-10 overlay"></div>
 
-    <!-- Profile Image -->
     <div class="z-20 flex justify-center items-center p-10 mb-10 col-start-1">
       <img
         src={imageMeSrc}
@@ -75,7 +71,6 @@
       />
     </div>
 
-    <!-- Name -->
     <div class="z-20 flex flex-col justify-end mb-20 ml-5 md:ml-0 md:pb-0">
       <div class={fallbackLevel >= 2 ? "" : "text-white"}>
         <h2 class="text-4xl md:text-7xl">

@@ -6,11 +6,9 @@
 <Page name="contact" class="text-left">
   <!-- Portfolio Intro -->
   <Block class="flex flex-col md:grid md:grid-cols-2 overflow-hidden my-0">
-    <!-- Navbar -->
     <CustomNavbar pageName="Contact" />
   </Block>
 
-  <!-- Contact Form -->
   <Block class="grid grid-cols-1 md:grid-cols-2 p-10 md:p-20 my-0 text-lg">
     <div class="md:ml-4">
       <p class="ml-4 md:mr-20">I'd love to hear from you!</p>
@@ -41,15 +39,3 @@
     </div>
   </Block>
 </Page>
-
-<style>
-  @media (min-width: 768px) {
-    :global(.dialog-title) {
-      font-size: 2rem; /* Change this to the size you want */
-    }
-    :global(.dialog-text) {
-      font-size: 1.125rem /* 18px */;
-      line-height: 1.75rem /* 28px */;
-    }
-  }
-</style>

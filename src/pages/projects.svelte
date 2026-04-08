@@ -8,11 +8,9 @@
   import store from "../js/store";
   const isMobile = store.getters.isMobile.value;
 
-  // Reactive project visibility state
   let projectVisibility = $state(projectsData.map(() => false));
 
   onMount(() => {
-    // Set up animation after component is mounted
     const setupAnimations = () => {
       const projectElements = document.querySelectorAll(".project-section");
 
@@ -20,12 +18,9 @@
         (entries) => {
           entries.forEach((entry, i) => {
             if (entry.isIntersecting) {
-              // Get the index from the data attribute
               const index = parseInt(entry.target.dataset.index, 10);
               if (!isNaN(index)) {
-                // Update the reactive state to show this project
                 projectVisibility[index] = true;
-                // Stop observing this element
                 observer.unobserve(entry.target);
               }
             }
@@ -37,30 +32,25 @@
         }
       );
 
-      // Observe each project element
       projectElements.forEach((el) => {
         observer.observe(el);
       });
     };
 
-    // Small delay to ensure DOM is ready
     setTimeout(setupAnimations, 300);
   });
 </script>
 
 <Page name="projects" class="text-left text-lg">
   <div class="relative">
-    <!-- Navbar -->
     <Block
       class="flex flex-col md:grid md:grid-cols-2 overflow-hidden mt-0 mb-24 navbar-placeholder"
     >
       <CustomNavbar pageName="Projects" />
     </Block>
 
-    <!-- Content Sections -->
     <div class="mx-10 md:mx-24 mt-14 px-4 py-8 space-y-32 md:space-y-48">
       {#each projectsData as project, index}
-        <!-- Project section with alternating layout -->
         <div
           class="project-section relative overflow-hidden"
           data-index={index}
@@ -83,7 +73,6 @@
                 : 'translate-x-32'
               : ''}"
           >
-            <!-- Project Image -->
             <div
               class="w-full md:w-2/5 lg:w-1/3 transition-all duration-500 delay-100 {projectVisibility[
                 index
@@ -98,7 +87,6 @@
               </div>
             </div>
 
-            <!-- Project Content -->
             <div
               class="w-full md:w-3/5 lg:w-2/3 transition-all duration-500 delay-200 {projectVisibility[
                 index
@@ -106,10 +94,8 @@
                 ? 'opacity-100 scale-100'
                 : 'opacity-0 scale-98'}"
             >
-              <!-- Project Title -->
               <h2 class="text-2xl font-bold mb-4">{project.title}</h2>
 
-              <!-- Technology Tags -->
               <div class="flex flex-wrap gap-2 mb-4">
                 {#each project.technologies as tech, techIndex}
                   <span
@@ -124,7 +110,6 @@
                 {/each}
               </div>
 
-              <!-- Project Description -->
               <p
                 class="whitespace-pre-wrap mb-6 transition-all duration-500 delay-300 {projectVisibility[
                   index
@@ -135,7 +120,6 @@
                 {project.text}
               </p>
 
-              <!-- Project Links -->
               <div
                 class="flex flex-wrap gap-3 transition-all duration-500 delay-400 {projectVisibility[
                   index
