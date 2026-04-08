@@ -36,6 +36,9 @@
       {#if pageName !== "Activity"}
         <ListItem href="/activity" panelClose>Activity</ListItem>
       {/if}
+      {#if pageName !== "Projects"}
+        <ListItem href="/projects" panelClose>Projects</ListItem>
+      {/if}
       {#if pageName !== "Contact"}
         <ListItem href="/contact" panelClose>Contact</ListItem>
       {/if}

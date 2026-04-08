@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { Page, Block, f7, Popup, Link } from "framework7-svelte";
+  import { Page, Block } from "framework7-svelte";
   import CustomNavbar from "../assets/navbar.svelte";
   import GalleryElement from "../assets/galleryElement.svelte";
   import { activityData } from "../data/activityData";
@@ -12,7 +12,6 @@
   let visibleSections = $state(new Set());
   let sections = $state([]);
   let progress = $state({ start: 0, end: 0 });
-  let popupOpened = $state(false);
   let currentCertificate = $state(null);
   let hoveredDot = $state(null);
   let isHovered = $state(false);
@@ -50,14 +49,17 @@
   }
 
   function closePopup() {
-    popupOpened = false;
     currentCertificate = null;
-    f7.popup.close(".popupPost", true);
   }
 
   function handleCertificateOpen(event) {
     currentCertificate = event.detail;
-    popupOpened = true;
+  }
+
+  function handleKeydown(event) {
+    if (event.key === "Escape" && currentCertificate) {
+      closePopup();
+    }
   }
 
   function calculateProgressRange(visibleSet) {
@@ -161,6 +163,8 @@
   };
 </script>
 
+<svelte:window onkeydown={handleKeydown} />
+
 <Page name="activity" class="text-left">
   <div class="relative">
     <Block
@@ -226,7 +230,7 @@
       </div>
     {/if}
 
-    <div class="mx-10 md:mx-24 mt-14 px-4 py-8 space-y-24">
+    <div class="mx-10 md:mx-24 mt-14 py-8 space-y-24">
       {#each activityData as activity}
         <div
           class="scroll-mt-32"
@@ -251,29 +255,43 @@
 </Page>
 
 {#if currentCertificate}
-  <Popup
-    class="popupPost"
-    opened={popupOpened}
-    onPopupClosed={() => (popupOpened = false)}
+  <div
+    class="certificate-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-label={currentCertificate.title}
+    tabindex="-1"
   >
-    <Page class="m-0 p-0">
-      <navbar
-        title={currentCertificate.title}
-        class="bg-white dark:bg-black grid float-end h-16"
-      >
-        <Link popupClose onClick={() => closePopup()} class="text-xl m-4"
-          >Close</Link
+    <button
+      type="button"
+      class="certificate-backdrop"
+      aria-label="Close certificate popup"
+      onclick={closePopup}
+    ></button>
+
+    <div class="certificate-content bg-white dark:bg-black">
+      <div class="h-16 flex items-center justify-between px-4 border-b border-gray-200 dark:border-gray-800">
+        <h2 class="text-base md:text-lg font-semibold truncate pr-4">
+          {currentCertificate.title}
+        </h2>
+        <button
+          type="button"
+          onclick={closePopup}
+          class="text-xl"
+          aria-label="Close certificate popup"
         >
-      </navbar>
-      <div class="h-[calc(100vh-4rem)]">
+          Close
+        </button>
+      </div>
+      <div class="h-[calc(90vh-4rem)]">
         <iframe
           src={currentCertificate.file}
           title={currentCertificate.title}
           class="w-full h-full"
         ></iframe>
       </div>
-    </Page>
-  </Popup>
+    </div>
+  </div>
 {/if}
 
 <style>
@@ -285,5 +303,32 @@
     :global(html) {
       scroll-behavior: auto;
     }
+  }
+
+  .certificate-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .certificate-backdrop {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+  }
+
+  .certificate-content {
+    position: relative;
+    z-index: 1;
+    width: min(1200px, 96vw);
+    max-height: 90vh;
+    border-radius: 0.75rem;
+    overflow: hidden;
   }
 </style>
