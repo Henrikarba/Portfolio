@@ -1,0 +1,37 @@
+& {
+  @import "framework7/less";
+  @import "framework7/components/panel/less";
+  @import "framework7/components/tabs/less";
+  @import "framework7/components/form/less";
+  @import "framework7/components/input/less";
+  @import "framework7/components/checkbox/less";
+  @import "framework7/components/smart-select/less";
+  @import "framework7/components/card/less";
+  @import "framework7/components/chip/less";
+  @import "framework7/components/preloader/less";
+  @import "framework7/components/photo-browser/less";
+  @import "framework7/components/skeleton/less";
+  @import "framework7/components/dialog/less";
+  @import "framework7/components/toast/less";
+  @import "framework7/components/accordion/less";
+
+  @includeIosTheme: true;
+  @includeMdTheme: true;
+  @includeDarkTheme: true;
+  @includeLightTheme: true;
+  @rtl: false;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --f7-page-bg-color: #000000;
+    --f7-page-text-color: #ffffff;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --f7-page-bg-color: #ffffff;
+    --f7-page-text-color: #000000;
+  }
+}

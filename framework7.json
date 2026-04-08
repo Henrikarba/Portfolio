@@ -1,0 +1,38 @@
+{
+  "cwd": "/home/wanted/Portfolio",
+  "type": ["web"],
+  "name": "Portfolio",
+  "framework": "svelte",
+  "template": "single-view",
+  "bundler": "vite",
+  "cssPreProcessor": "less",
+  "theming": {
+    "customColor": true,
+    "color": "#007aff",
+    "darkMode": true,
+    "iconFonts": true
+  },
+  "customBuild": true,
+  "customBuildConfig": {
+    "rtl": false,
+    "darkTheme": true,
+    "lightTheme": true,
+    "themes": ["ios", "md"],
+    "components": [
+      "panel",
+      "tabs",
+      "form",
+      "input",
+      "checkbox",
+      "smart-select",
+      "card",
+      "chip",
+      "preloader",
+      "photo-browser",
+      "skeleton",
+      "dialog",
+      "toast",
+      "accordion"
+    ]
+  }
+}
