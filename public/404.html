@@ -8,12 +8,15 @@
   <body>
     <script>
       (function () {
-        const { origin, pathname, search, hash } = window.location;
-        const target = `/?redirect=${encodeURIComponent(
-          `${pathname}${search}${hash}`
-        )}`;
+        const url = new URL(window.location.href);
+        const redirectedPath = url.pathname + url.search + url.hash;
 
-        window.location.replace(`${origin}${target}`);
+        if (!redirectedPath || redirectedPath === '/') {
+          return;
+        }
+
+        window.history.replaceState(null, '', '/?redirect=' + encodeURIComponent(redirectedPath));
+        window.location.href = '/?redirect=' + encodeURIComponent(redirectedPath);
       })();
     </script>
   </body>
