@@ -49,7 +49,7 @@
       <CustomNavbar pageName="Projects" />
     </Block>
 
-    <div class="mx-10 md:mx-24 mt-14 px-4 py-8 space-y-32 md:space-y-48">
+    <div class="mx-4 md:mx-24 mt-14 px-0 py-8 space-y-32 md:space-y-48">
       {#each projectsData as project, index}
         <div
           class="project-section relative overflow-hidden"
