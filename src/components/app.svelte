@@ -15,7 +15,16 @@
   import { f7params } from "../js/f7params";
 
   onMount(() => {
-    f7ready(() => {});
+    f7ready((f7Instance) => {
+      // Handle 404 redirect trick for GitHub Pages
+      const params = new URLSearchParams(window.location.search);
+      const redirect = params.get('redirect');
+      if (redirect) {
+        // Remove the redirect param and navigate to the actual route
+        window.history.replaceState(null, null, redirect);
+        f7Instance.views.main.router.navigate(redirect);
+      }
+    });
   });
 </script>
 
