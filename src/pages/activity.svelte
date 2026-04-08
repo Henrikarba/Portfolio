@@ -230,7 +230,7 @@
       </div>
     {/if}
 
-    <div class="mx-4 mt-14 px-0 py-8 space-y-24">
+    <div class="px-4 md:px-20 py-8 mt-14 space-y-24">
       {#each activityData as activity}
         <div
           class="scroll-mt-32"

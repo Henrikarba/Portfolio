@@ -71,17 +71,17 @@
       />
     </div>
 
-    <div class="z-20 flex flex-col justify-end mb-20 ml-5 md:ml-0 md:pb-0">
+    <div class="z-20 flex flex-col justify-end mb-20 ml-5 md:ml-0 p-0">
       <div class={fallbackLevel >= 2 ? "" : "text-white"}>
         <h2 class="text-4xl md:text-7xl">
-          Henri <br /> Karba
+          Henri<br />Karba
         </h2>
       </div>
     </div>
   </Block>
 
   <!-- Portfolio About Me -->
-  <Block class="grid grid-cols-1 md:grid-cols-2 p-10 md:p-20 my-0">
+  <Block class="grid grid-cols-1 md:grid-cols-2 p-4 md:p-20 my-0">
     <h3 class="text-2xl md:text-3xl md:ml-10 mb-5 md:mb-0">About Me</h3>
     <div class="text-lg">
       <p class="mb-5">
