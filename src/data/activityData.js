@@ -1,9 +1,9 @@
 
 // QEst Hack
-import QestHackImage1 from "../../static/QestHack/winners.webp";
-import QestHackImage2 from "../../static/QestHack/event.webp";
-import QestHackImage3 from "../../static/QestHack/participants.webp";
-import QestHackImage4 from "../../static/QestHack/solution.webp";
+import QestHackImage1 from "../../static/QEstHack/winners.webp";
+import QestHackImage2 from "../../static/QEstHack/event.webp";
+import QestHackImage3 from "../../static/QEstHack/participants.webp";
+import QestHackImage4 from "../../static/QEstHack/solution.webp";
 
 
 // Kood/Jõhvi
