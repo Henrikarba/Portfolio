@@ -1,7 +1,6 @@
 <script>
   import { onMount } from "svelte";
   import { Page, Block, Link } from "framework7-svelte";
-  import { f7 } from "framework7-svelte";
   import CustomNavbar from "../assets/navbar.svelte";
   import { projectsData } from "../data/projectsData";
 
@@ -10,13 +9,28 @@
 
   let projectVisibility = $state(projectsData.map(() => false));
 
+  const linkMeta = {
+    github: { icon: "fab fa-github", label: "GitHub" },
+    demo: { icon: "fas fa-laptop-code", label: "Demo" },
+    website: { icon: "fas fa-external-link-alt", label: "Visit site" },
+    documentation: { icon: "fas fa-book", label: "Docs" },
+    blogPost: { icon: "fas fa-newspaper", label: "Blog post" },
+  };
+
+  function projectLinks(links) {
+    if (!links) return [];
+    return Object.entries(links)
+      .filter(([key, href]) => href && linkMeta[key])
+      .map(([key, href]) => ({ href, ...linkMeta[key] }));
+  }
+
   onMount(() => {
     const setupAnimations = () => {
       const projectElements = document.querySelectorAll(".project-section");
 
       const observer = new IntersectionObserver(
         (entries) => {
-          entries.forEach((entry, i) => {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
               const index = parseInt(entry.target.dataset.index, 10);
               if (!isNaN(index)) {
@@ -27,165 +41,122 @@
           });
         },
         {
-          threshold: 0.1,
-          rootMargin: "-50px 0px -50px 0px",
+          threshold: 0.15,
+          rootMargin: "-40px 0px -40px 0px",
         }
       );
 
-      projectElements.forEach((el) => {
-        observer.observe(el);
-      });
+      projectElements.forEach((el) => observer.observe(el));
     };
 
-    setTimeout(setupAnimations, 300);
+    setTimeout(setupAnimations, 200);
   });
 </script>
 
-<Page name="projects" class="text-left text-lg">
+<Page name="projects" class="text-left">
   <div class="relative">
     <Block
-      class="flex flex-col md:grid md:grid-cols-2 overflow-hidden mt-0 mb-24 navbar-placeholder"
+      class="flex flex-col md:grid md:grid-cols-2 overflow-hidden mt-0 mb-16 navbar-placeholder"
     >
       <CustomNavbar pageName="Projects" />
     </Block>
 
-    <div class="px-4 md:px-20 py-8 mt-14 space-y-24 md:space-y-32">
-      {#each projectsData as project, index}
-        <div
-          class="project-section relative overflow-hidden"
-          data-index={index}
-        >
+    <div class="px-6 md:px-12 lg:px-28">
+      <!-- Section intro -->
+      <div class="mb-16 md:mb-24 border-b border-zinc-200 dark:border-zinc-800 pb-10">
+        <p class="eyebrow mb-4">Selected Work</p>
+        <h2 class="text-3xl md:text-5xl tracking-tight leading-tight max-w-2xl">
+          Things I've designed, built, and shipped.
+        </h2>
+      </div>
+
+      <div>
+        {#each projectsData as project, index}
           <div
-            class="flex flex-col {index % 2 === 0
-              ? 'md:flex-row'
-              : 'md:flex-row-reverse'} gap-8 items-start
-                  transition-all duration-1000 ease-out
-                  {projectVisibility[index] ? 'opacity-100' : 'opacity-0'} 
-                  {projectVisibility[index] ? 'translate-y-0' : 'translate-y-8'}
-                  {index % 2 === 0
-              ? projectVisibility[index]
-                ? 'translate-x-0'
-                : '-translate-x-32'
-              : ''}
-                  {index % 2 !== 0
-              ? projectVisibility[index]
-                ? 'translate-x-0'
-                : 'translate-x-32'
+            class="project-section fade-item {projectVisibility[index]
+              ? 'is-visible'
+              : ''} py-14 md:py-20 {index !== 0
+              ? 'border-t border-zinc-200 dark:border-zinc-800'
               : ''}"
+            data-index={index}
+            style="transition-delay: {Math.min(index, 2) * 60}ms"
           >
-            <div
-              class="w-full md:w-2/5 lg:w-1/3 transition-all duration-500 delay-100 {projectVisibility[
-                index
-              ]
-                ? 'opacity-100 scale-100'
-                : 'opacity-0 scale-95'}"
-            >
-              <div
-                class="shadow-md hover:shadow-lg transition-all duration-500 rounded-lg overflow-hidden transform h-full"
-              >
-                <img src={project.media.src} alt={project.media.alt} />
-              </div>
-            </div>
-
-            <div
-              class="w-full md:w-3/5 lg:w-2/3 transition-all duration-500 delay-200 {projectVisibility[
-                index
-              ]
-                ? 'opacity-100 scale-100'
-                : 'opacity-0 scale-98'}"
-            >
-              <h2 class="text-2xl font-bold mb-4">{project.title}</h2>
-
-              <div class="flex flex-wrap gap-2 mb-4">
-                {#each project.technologies as tech, techIndex}
-                  <span
-                    class="bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 px-3 py-1 rounded-full text-sm hover:transform hover:scale-105
-                          transition-all duration-500 {projectVisibility[index]
-                      ? 'opacity-100 translate-y-0'
-                      : 'opacity-0 translate-y-4'}"
-                    style="transition-delay: {300 + techIndex * 50}ms"
-                  >
-                    {tech}
-                  </span>
-                {/each}
+            <div class="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+              <!-- Index + meta column -->
+              <div class="md:col-span-1">
+                <span
+                  class="text-sm tabular-nums text-zinc-500 dark:text-zinc-600 tracking-widest"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
               </div>
 
-              <p
-                class="whitespace-pre-wrap mb-6 transition-all duration-500 delay-300 {projectVisibility[
-                  index
-                ]
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-4'}"
-              >
-                {project.text}
-              </p>
+              <!-- Media column -->
+              <div class="md:col-span-5">
+                <div
+                  class="overflow-hidden rounded-sm bg-zinc-50 dark:bg-zinc-900 ring-1 ring-zinc-200 dark:ring-zinc-800 project-media"
+                >
+                  <img
+                    src={project.media.src}
+                    alt={project.media.alt}
+                    class="w-full h-auto object-cover transition-transform duration-700 ease-out"
+                  />
+                </div>
+              </div>
 
-              <div
-                class="flex flex-wrap gap-3 transition-all duration-500 delay-400 {projectVisibility[
-                  index
-                ]
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-4'}"
-              >
-                {#if project.links?.github}
-                  <Link
-                    external
-                    href={project.links.github}
-                    class="flex items-center bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100 px-3 py-2 rounded-md hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md mb-2"
-                  >
-                    <i class="fab fa-github mr-2"></i>
-                    <span>GitHub</span>
-                  </Link>
-                {/if}
+              <!-- Text column -->
+              <div class="md:col-span-6">
+                <h3 class="text-2xl md:text-3xl tracking-tight mb-4">
+                  {project.title}
+                </h3>
 
-                {#if project.links?.demo}
-                  <Link
-                    external
-                    href={project.links.demo}
-                    class="flex items-center bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100 px-3 py-2 rounded-md hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md mb-2"
-                  >
-                    <i class="fas fa-laptop-code mr-2"></i>
-                    <span>Demo</span>
-                  </Link>
-                {/if}
+                <p
+                  class="whitespace-pre-wrap text-zinc-700 dark:text-zinc-400 leading-relaxed mb-6"
+                >
+                  {project.text}
+                </p>
 
-                {#if project.links?.website}
-                  <Link
-                    external
-                    href={project.links.website}
-                    class="flex items-center bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100 px-3 py-2 rounded-md hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md mb-2"
-                  >
-                    <i class="fas fa-globe mr-2"></i>
-                    <span>Website</span>
-                  </Link>
-                {/if}
+                <div class="flex flex-wrap gap-x-4 gap-y-2 mb-7">
+                  {#each project.technologies as tech}
+                    <span
+                      class="text-xs tracking-wide text-zinc-600 dark:text-zinc-400"
+                    >
+                      {tech}
+                    </span>
+                  {/each}
+                </div>
 
-                {#if project.links?.documentation}
-                  <Link
-                    external
-                    href={project.links.documentation}
-                    class="flex items-center bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100 px-3 py-2 rounded-md hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md mb-2"
-                  >
-                    <i class="fas fa-book mr-2"></i>
-                    <span>Docs</span>
-                  </Link>
-                {/if}
-
-                {#if project.links?.blogPost}
-                  <Link
-                    external
-                    href={project.links.blogPost}
-                    class="flex items-center bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100 px-3 py-2 rounded-md hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md mb-2"
-                  >
-                    <i class="fas fa-newspaper mr-2"></i>
-                    <span>Blog Post</span>
-                  </Link>
+                {#if projectLinks(project.links).length}
+                  <div class="flex flex-wrap gap-x-6 gap-y-3">
+                    {#each projectLinks(project.links) as link}
+                      <Link
+                        external
+                        href={link.href}
+                        class="quiet-link text-sm text-zinc-800 dark:text-zinc-200"
+                      >
+                        <i class="{link.icon} text-xs"></i>
+                        <span>{link.label}</span>
+                      </Link>
+                    {/each}
+                  </div>
                 {/if}
               </div>
             </div>
           </div>
-        </div>
-      {/each}
+        {/each}
+      </div>
     </div>
+
+    <div class="h-24"></div>
   </div>
 </Page>
+
+<style>
+  .project-media:hover img {
+    transform: scale(1.03);
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+</style>

@@ -177,7 +177,7 @@
       <div
         class="sticky top-0 z-50 py-4 bg-white/80 backdrop-blur-sm dark:bg-black/80"
       >
-        <div class="mx-10 md:mx-24 px-4">
+        <div class="px-6 md:px-12 lg:px-28">
           <div class="relative">
             <Progress value={progress} />
 
@@ -217,7 +217,7 @@
                     data-index={index}
                   >
                     <span
-                      class="text-sm bg-gray-800 text-white px-2 py-1 rounded whitespace-nowrap"
+                      class="text-sm bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-100 px-2 py-1 rounded whitespace-nowrap"
                     >
                       {activity.title}
                     </span>
@@ -230,16 +230,28 @@
       </div>
     {/if}
 
-    <div class="px-4 md:px-20 py-8 mt-14 space-y-24">
+    <div class="px-6 md:px-12 lg:px-28 pt-8 mt-8">
+      <div class="mb-14 md:mb-20 border-b border-zinc-200 dark:border-zinc-800 pb-10">
+        <p class="eyebrow mb-4">Journey</p>
+        <h2 class="text-3xl md:text-5xl tracking-tight leading-tight max-w-2xl">
+          Hackathons, competitions, and milestones.
+        </h2>
+      </div>
+    </div>
+
+    <div
+      class="px-6 md:px-12 lg:px-28 pb-8 divide-y divide-zinc-200 dark:divide-zinc-800"
+    >
       {#each activityData as activity}
         <div
-          class="scroll-mt-32"
+          class="scroll-mt-32 py-12 md:py-16 first:pt-0"
           use:bindSections
           data-date={activity.date}
           data-id={activity.id}
         >
           <GalleryElement
             mediaItems={activity.media}
+            date={activity.date}
             textItems={{
               title: activity.title,
               text: activity.text,

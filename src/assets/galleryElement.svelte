@@ -7,6 +7,14 @@
   export let mediaItems = [];
   export let textItems = {};
   export let certificates = undefined;
+  export let date = undefined;
+
+  function formatDate(value) {
+    if (!value) return "";
+    const d = new Date(value);
+    if (isNaN(d)) return "";
+    return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+  }
 
   const dispatch = createEventDispatcher();
   let enlargedImage = null;
@@ -58,27 +66,36 @@
 <svelte:window on:keydown={handleKeydown} />
 
 <div class="mb-8">
-  <p class="mb-8 text-lg whitespace-pre-wrap">
+  <!-- Title + body kept to a readable measure, date as an eyebrow above -->
+  <div class="max-w-2xl">
+    {#if date}
+      <p class="eyebrow mb-4">{formatDate(date)}</p>
+    {/if}
     {#if textItems.link}
-      <Link external href={textItems.link}>
-        <strong class="text-2xl">{textItems.title}</strong>
+      <Link external href={textItems.link} class="quiet-link">
+        <span class="text-2xl md:text-3xl tracking-tight">{textItems.title}</span>
+        <i class="fas fa-external-link-alt text-xs opacity-60"></i>
       </Link>
     {:else}
-      <strong class="text-2xl">{textItems.title}</strong>
+      <span class="text-2xl md:text-3xl tracking-tight">{textItems.title}</span>
     {/if}
-    <br /><br />{textItems.text}
-  </p>
+    <p
+      class="mt-5 text-lg leading-relaxed text-zinc-700 dark:text-zinc-400 whitespace-pre-wrap"
+    >
+      {textItems.text}
+    </p>
+  </div>
 
   {#if certificates}
-    <div class="mb-8">
-      <h3 class="text-xl font-bold mb-8">Certificates</h3>
-      <div class="flex flex-row flex-wrap gap-4">
+    <div class="mt-8 max-w-2xl">
+      <p class="eyebrow mb-4">Certificates</p>
+      <div class="flex flex-row flex-wrap gap-3">
         {#each certificates as cert}
           <button
             on:click={() => openCertificate(cert)}
-            class="p-4 border rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer w-fit"
+            class="group inline-flex items-center gap-2 px-4 py-2 rounded-full ring-1 ring-zinc-300 dark:ring-zinc-700 text-sm text-zinc-700 dark:text-zinc-300 hover:ring-zinc-900 dark:hover:ring-zinc-100 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors cursor-pointer w-fit"
           >
-            <i class="fas fa-certificate mr-2"></i>
+            <i class="fas fa-certificate text-xs opacity-60"></i>
             {cert.title}
           </button>
         {/each}
@@ -86,8 +103,9 @@
     </div>
   {/if}
 
+  <!-- Images run full width, wider than the text -->
   <div
-    class="horizontal-scroll flex overflow-x-auto snap-x snap-mandatory py-4 px-4"
+    class="horizontal-scroll flex overflow-x-auto snap-x snap-mandatory py-4 mt-8"
     role="region"
     aria-label="Image gallery"
   >
@@ -105,12 +123,12 @@
             <img
               src={item.src}
               alt={item.alt || `Gallery image ${index + 1}`}
-              class="gallery-image w-full h-full object-cover rounded-lg"
+              class="gallery-image w-full h-full object-cover rounded-sm"
             />
           </button>
         {:else if item.type === "video"}
           <iframe
-            class="gallery-video w-full h-full rounded-lg"
+            class="gallery-video w-full h-full rounded-sm"
             src={`https://www.youtube.com/embed/${item.videoId}`}
             title="YouTube video player"
             frameborder="0"
