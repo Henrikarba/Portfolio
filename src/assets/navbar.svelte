@@ -10,8 +10,6 @@
     textColor = "text-black";
   }
 
-  // Home keeps its original fixed margin; content pages use responsive
-  // margins that stay aligned with the page content at every breakpoint.
   const isHome = pageName === "Portfolio";
   const titleMargin = isHome ? "md:ml-24" : "md:ml-8 lg:ml-24";
   const linksMargin = isHome ? "md:mr-24" : "md:mr-8 lg:mr-24";
@@ -39,7 +37,9 @@
     <div
       class="flex items-center py-2 md:col-start-1 justify-center md:justify-normal"
     >
-      <h1 class="text-4xl {titleMargin} md:text-left tracking-tight">{pageName}</h1>
+      <h1 class="text-4xl {titleMargin} md:text-left tracking-tight">
+        {pageName}
+      </h1>
     </div>
     <div
       class="items-center gap-8 text-sm uppercase tracking-[0.2em] hidden md:flex justify-end {linksMargin}"

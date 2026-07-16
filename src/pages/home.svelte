@@ -94,10 +94,11 @@
       <h3 class="text-2xl md:text-3xl tracking-tight">About Me</h3>
     </div>
     <div class="text-lg">
-      <a
-        on:click={() => (showShort = !showShort)}
-        class="group mb-8 inline-flex items-center gap-2 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+      <button
         type="button"
+        on:click={() => (showShort = !showShort)}
+        aria-expanded={showShort}
+        class="group mb-8 inline-flex items-center gap-2 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors cursor-pointer"
       >
         <i
           class="fas {showShort
@@ -107,7 +108,7 @@
         {showShort
           ? "On second thought, give me the full story"
           : "Don't like reading much? Click for the short version"}
-      </a>
+      </button>
 
       {#if showShort}
         <p class="mb-5">

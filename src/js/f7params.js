@@ -13,6 +13,10 @@ export const f7params = {
         window.matchMedia("(prefers-color-scheme: dark)").matches,
     store: store,
     routes: routes,
+    touch: {
+        // Disable the Material "touch ripple" effect on tap/click
+        touchRipple: false,
+    },
     view: {
         loadInitialPage: true,
         browserHistory: true,

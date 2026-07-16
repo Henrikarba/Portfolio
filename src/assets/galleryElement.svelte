@@ -66,14 +66,15 @@
 <svelte:window on:keydown={handleKeydown} />
 
 <div class="mb-8">
-  <!-- Title + body kept to a readable measure, date as an eyebrow above -->
   <div class="max-w-2xl">
     {#if date}
       <p class="eyebrow mb-4">{formatDate(date)}</p>
     {/if}
     {#if textItems.link}
       <Link external href={textItems.link} class="quiet-link">
-        <span class="text-2xl md:text-3xl tracking-tight">{textItems.title}</span>
+        <span class="text-2xl md:text-3xl tracking-tight"
+          >{textItems.title}</span
+        >
         <i class="fas fa-external-link-alt text-xs opacity-60"></i>
       </Link>
     {:else}
@@ -103,7 +104,6 @@
     </div>
   {/if}
 
-  <!-- Images run full width, wider than the text -->
   <div
     class="horizontal-scroll flex overflow-x-auto snap-x snap-mandatory py-4 mt-8"
     role="region"
@@ -156,11 +156,11 @@
       on:click={closeImage}
     ></button>
     <div class="lightbox-content">
-    <img
-      src={enlargedImage.src}
-      alt={enlargedImage.alt}
-      class="lightbox-image"
-    />
+      <img
+        src={enlargedImage.src}
+        alt={enlargedImage.alt}
+        class="lightbox-image"
+      />
     </div>
   </div>
 {/if}
