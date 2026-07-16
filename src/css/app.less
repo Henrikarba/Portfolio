@@ -123,11 +123,95 @@ body {
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+}
 
-  .sidePanel {
-    background-color: #a3a3a3;
+/* Mobile side panel — themed to match the site */
+.theme-panel {
+  --f7-panel-bg-color: #ffffff;
+  color: #18181b;
+}
+
+@media (prefers-color-scheme: dark) {
+  .theme-panel {
+    --f7-panel-bg-color: #000000;
+    color: #fafafa;
   }
-  .sideButton {
-    color: black;
+}
+
+.panel-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 2rem;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3.5rem;
+}
+
+.panel-brand {
+  font-size: 1.125rem;
+  letter-spacing: -0.01em;
+}
+
+.panel-close-btn {
+  color: inherit;
+  opacity: 0.6;
+  transition: opacity 0.25s ease;
+}
+
+.panel-close-btn:hover {
+  opacity: 1;
+}
+
+.panel-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.panel-link {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  padding: 0.55rem 0;
+  color: inherit;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  opacity: 0.8;
+  transition: opacity 0.25s ease;
+}
+
+.panel-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.35rem;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.panel-link:hover {
+  opacity: 1;
+}
+
+.panel-link:hover::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel-close-btn,
+  .panel-link,
+  .panel-link::after {
+    transition: none;
   }
 }
