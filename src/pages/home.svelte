@@ -81,8 +81,18 @@
         <p
           class="mt-4 text-sm md:text-base uppercase tracking-[0.25em] opacity-80"
         >
-          Full-Stack Developer · Cybersecurity
+          Full-Stack Developer
         </p>
+        <p class="mt-3 text-base md:text-lg opacity-90 max-w-md">
+          I build web apps end to end, with security in mind from the first
+          line. Open to full-stack roles.
+        </p>
+        <Link
+          href="/contact/"
+          class="mt-6 inline-flex items-center gap-2 px-5 py-2 rounded-full ring-1 ring-current text-sm w-fit hover:opacity-80 transition-opacity"
+        >
+          Get in touch <i class="fas fa-arrow-right text-xs"></i>
+        </Link>
       </div>
     </div>
   </Block>
@@ -113,8 +123,9 @@
       {#if showShort}
         <p class="mb-5">
           I'm Henri, a
-          <strong>full-stack developer</strong> and
-          <strong>cybersecurity</strong> nerd from Estonia. I trained at
+          <strong>full-stack developer</strong> from Estonia looking for my next
+          full-stack role. I care about writing <strong>secure code</strong>, and
+          my cybersecurity background keeps that habit sharp. I trained at
           <strong
             ><Link external href="https://kood.tech/et/">Kood/Jõhvi</Link
             ></strong
@@ -152,9 +163,10 @@
         </p>
       {:else}
         <p class="mb-5">
-          I'm Henri, a passionate <strong>Full-Stack Developer</strong>
-          with a love for problem-solving and a growing expertise in
-          <strong>cybersecurity</strong>. I began my formal journey at
+          I'm Henri, a <strong>Full-Stack Developer</strong> looking for my
+          next full-stack role. I build things front to back, and I try to
+          write <strong>secure code</strong> while doing it. I began my formal
+          journey at
           <strong
             ><Link external href="https://kood.tech/et/">Kood/Jõhvi,</Link
             ></strong
@@ -186,17 +198,16 @@
           >, a well-known IT community in Estonia.
         </p>
         <p class="mb-5">
-          In addition to full-stack development, I've taught myself <strong
+          Security is the lens I build through. I've taught myself <strong
             ><Link external href="https://www.python.org/">Python</Link></strong
           >
-          as part of my cybersecurity studies. I even had the opportunity to participate
-          in high-profile competitions like the
+          while studying cybersecurity, and I've competed in events like the
           <strong
             ><Link external href="https://ctftech.com/"
               >Cyber Battle of Estonia,</Link
             ></strong
-          > where I made it to the finals. Cybersecurity fascinates me, and I'm always
-          exploring new ways to bridge coding with security practices.
+          > where I made it to the finals. Knowing how things get broken makes me
+          better at building them so they don't.
         </p>
         <p class="mb-5">
           Outside of coding, I'm an avid problem-solver, constantly seeking new
